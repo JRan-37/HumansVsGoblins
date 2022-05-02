@@ -1,5 +1,6 @@
 package Entities;
 
+import Environment.GridTiles;
 import Events.InputEvent;
 import Listeners.EventListener;
 import Utils.Colors;
@@ -8,17 +9,26 @@ import Utils.Events;
 public class Human extends Character implements EventListener<InputEvent> {
 
 
-    public Human(int health, int strength) {
+    public Human(int health, int strength, int defense, int accuracy) {
         this.health = health;
         this.strength = strength;
-        //EventManager.EventRegister.<InputEvent>MMEventStartListening(this);
-        /*EventManager.<InputEvent>AddListener(new EventListener<InputEvent>() {
-            @Override
-            public void onEvent(InputEvent eventType) {
-                System.out.println(health + " Human");
-            }
-        });*/
-        EventListener.EventStartListening(this, Events.InputEvent);
+        this.defense = defense;
+        this.accuracy = accuracy;
+
+    }
+
+    @Override
+    public void spawn(GridTiles tile) {
+        super.spawn(tile);
+
+        onEnable();
+    }
+
+    @Override
+    protected void kill() {
+        super.kill();
+
+        onDisable();
     }
 
     @Override
@@ -29,6 +39,14 @@ public class Human extends Character implements EventListener<InputEvent> {
     @Override
     public void onEvent(InputEvent eventType) {
         moveTo(eventType.input);
+    }
+
+    private void onEnable() {
+        EventListener.EventStartListening(this, Events.InputEvent);
+    }
+
+    private void onDisable() {
+        EventListener.EventStopListening(this, Events.InputEvent);
     }
 
 }

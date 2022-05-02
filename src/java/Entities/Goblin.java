@@ -6,9 +6,11 @@ public class Goblin extends Character{
 
 
 
-    public Goblin(int health, int strength) {
+    public Goblin(int health, int strength, int defense, int accuracy) {
         this.health = health;
         this.strength = strength;
+        this.defense = defense;
+        this.accuracy = accuracy;
     }
 
     @Override
