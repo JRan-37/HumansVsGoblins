@@ -46,4 +46,8 @@ public class Item extends GameObject implements EventListener<ItemPickupEvent> {
         EventListener.EventStopListening(this, Events.ItemPickupEvent);
     }
 
+    public void disableListener() {
+        onDisable();
+    }
+
 }

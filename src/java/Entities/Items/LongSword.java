@@ -23,6 +23,7 @@ public class LongSword extends Item{
     //Add this item to inventory when pickup event triggered
     @Override
     public void onEvent(ItemPickupEvent eventType) {
+        super.onEvent(eventType);
         InventoryManager.getInstance().addItem(this);
     }
 

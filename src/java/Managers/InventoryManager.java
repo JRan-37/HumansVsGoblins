@@ -25,7 +25,9 @@ public class InventoryManager {
     //Add item to equipmentList and run autoequip on player
     public void addItem(Item item) {
         equipmentList.add(item);
+        item.disableListener();
         GameManager.getInstance().getPlayer().autoEquip(equipmentList);
+
     }
 
     //Returns equipment list
