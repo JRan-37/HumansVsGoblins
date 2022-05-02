@@ -5,9 +5,21 @@ import Entities.GameObject;
 import Environment.GridTiles;
 import Listeners.EventListener;
 import Utils.Events;
+import Utils.ItemTypes;
 
 //Parent class of all game items, handles pickup event listeners
 public class Item extends GameObject implements EventListener<ItemPickupEvent> {
+
+    protected ItemTypes itemType;
+    protected int itemValue;
+
+    public ItemTypes getType() {
+        return itemType;
+    }
+
+    public int getItemValue() {
+        return itemValue;
+    }
 
     @Override
     public void spawn(GridTiles tile) {
