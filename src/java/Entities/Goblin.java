@@ -4,8 +4,7 @@ import Utils.Colors;
 
 public class Goblin extends Character{
 
-
-
+    //Initialize goblin with health, strength, defense and accuracy stats
     public Goblin(int health, int strength, int defense, int accuracy) {
         this.health = health;
         this.strength = strength;
@@ -13,6 +12,7 @@ public class Goblin extends Character{
         this.accuracy = accuracy;
     }
 
+    //Overrides toString with a red "G " to represent goblin objects
     @Override
     public String toString() {
         return Colors.ANSI_RED + "G " + Colors.ANSI_RESET;
