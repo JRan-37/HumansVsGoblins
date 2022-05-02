@@ -3,6 +3,7 @@ package Managers;
 import Entities.Goblin;
 import Entities.Human;
 import Entities.Items.LongSword;
+import Entities.Items.TreasureChest;
 import Events.GameEvent;
 import Listeners.EventListener;
 import Utils.Colors;
@@ -49,9 +50,6 @@ public class GameManager implements EventListener<GameEvent>{
         //Spawn Player at top left of the map
         player = new Human(Config.playerHealth, Config.playerStrength, Config.playerDefense, Config.playerAccuracy);
         player.spawn(gridManager.getMap().getTileAtPosition(new Position(0, 0)));
-
-        LongSword ls = new LongSword();
-        ls.spawn(gridManager.getMap().getTileAtPosition(new Position(0, 1)));
 
         //Spawn Goblins
         Goblin enemy1 = new Goblin(Config.goblinHealth, Config.goblinStrength, Config.goblinDefense, Config.goblinAccuracy);
