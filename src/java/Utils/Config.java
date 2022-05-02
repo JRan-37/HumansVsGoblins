@@ -15,4 +15,7 @@ public class Config {
     public static final int goblinStrength = 5;
     public static final int goblinDefense = 1;
     public static final int goblinAccuracy = 60;
+
+    public static final int LongSwordDamage = 5;
+    public static final int LeatherArmorDefense = 3;
 }
