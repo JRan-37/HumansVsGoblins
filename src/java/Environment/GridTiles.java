@@ -27,9 +27,10 @@ public class GridTiles {
         }
 
         if(currentObj != null) {
-            int centerPosition = grid.length / 2 + 1;
+            int centerPosition = grid.length / 2;
             stringGrid[centerPosition][centerPosition] = currentObj.toString();
         }
+
         return stringGrid;
     }
 
@@ -49,17 +50,29 @@ public class GridTiles {
         return currentObj;
     }
 
+
+    private boolean colors = true;
+
+    public void setColors(boolean colors) {
+        this.colors = colors;
+    }
+
     private String getTileString(Tiles tile) {
-        switch(tile) {
-            case DIRT :
-                return Colors.ANSI_RED + "+ " + Colors.ANSI_RESET;
-            case GRASS:
-                return Colors.ANSI_GREEN + "+ " + Colors.ANSI_RESET;
-            case ROCK:
-                return Colors.ANSI_CYAN + "+ " + Colors.ANSI_RESET;
-            default:
-                return Colors.ANSI_GREEN + "+ " + Colors.ANSI_RESET;
+        if(colors) {
+            switch(tile) {
+                case DIRT :
+                    return Colors.ANSI_RED + "+ " + Colors.ANSI_RESET;
+                case GRASS:
+                    return Colors.ANSI_GREEN + "+ " + Colors.ANSI_RESET;
+                case ROCK:
+                    return Colors.ANSI_CYAN + "+ " + Colors.ANSI_RESET;
+                default:
+                    return Colors.ANSI_GREEN + "+ " + Colors.ANSI_RESET;
+            }
         }
+        else
+            return "+ ";
+
     }
 
 }

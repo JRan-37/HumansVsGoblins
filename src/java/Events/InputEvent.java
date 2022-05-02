@@ -1,9 +1,10 @@
 package Events;
 
+import Utils.Events;
 import Utils.Inputs;
 import Managers.EventManager;
 
-public class InputEvent {
+public class InputEvent{
     public Inputs input;
 
     public InputEvent (Inputs input) {
@@ -14,6 +15,6 @@ public class InputEvent {
 
     public static <T> void Trigger(Inputs input) {
         e = new InputEvent(input);
-        EventManager.TriggerEvent(e);
+        EventManager.TriggerEvent(e, Events.InputEvent);
     }
 }

@@ -1,3 +1,3 @@
 package Utils;
 
-public record Position(int posX, int posY) { }
+public record Position(int posY, int posX) { }

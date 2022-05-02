@@ -1,6 +1,7 @@
 package Events;
 
 import Managers.EventManager;
+import Utils.Events;
 
 public class GameEvent {
     public String name;
@@ -11,7 +12,7 @@ public class GameEvent {
     }
 
     public static <T> void Trigger(String name) {
-        e.name = name;
-        EventManager.TriggerEvent(e);
+        e = new GameEvent(name);
+        EventManager.TriggerEvent(e, Events.GameEvent);
     }
 }

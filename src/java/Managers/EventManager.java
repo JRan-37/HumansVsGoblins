@@ -1,13 +1,14 @@
 package Managers;
 
-import Events.InputEvent;
 import Listeners.EventListener;
 import Listeners.EventListenerBase;
+import Utils.Events;
+
 import java.util.*;
 
 public class EventManager{
 
-    private static List<EventListenerBase> listenersList;
+    private static Map<Events, List<EventListenerBase>> listenersList;
 
     private static EventManager instance = null;
 
@@ -16,27 +17,27 @@ public class EventManager{
     }
 
     private EventManager() {
-        listenersList = new ArrayList<>();
+        listenersList = new HashMap<>();
     }
 
-    public static <Event> void AddListener(EventListener<Event> e) {
+    public static <Even> void AddListener(EventListener<Even> e, Events eName) {
 
-        if(!listenersList.contains(e)) {
-            listenersList.add(e);
+        if(!listenersList.containsKey(eName)) {
+            listenersList.put(eName, new ArrayList<>());
         }
 
-
-        System.out.println("Added " + e);
+        if(!listenersList.get(eName).contains(e)) {
+            listenersList.get(eName).add(e);
+        }
     }
 
-    public static <Event> void RemoveListener(EventListener<Event> e) {
-        InputEvent type = e.;
+    public static <Event> void RemoveListener(EventListener<Event> e, Events eName) {
 
-        if(!listenersList.contains(e)){
+        if(!listenersList.containsKey(eName)){
             return;
         }
 
-        /*List<EventListenerBase> listenList = listenersList.get(type);
+        List<EventListenerBase> listenList = listenersList.get(eName);
 
         for(EventListenerBase event : listenList) {
             EventListener<Event> eventChild = (EventListener<Event>) event;
@@ -44,61 +45,26 @@ public class EventManager{
                 listenList.remove(event);
             }
             if(listenList.size() == 0) {
-                listenersList.remove(type);
+                listenersList.remove(eName);
             }
-        }*/
+        }
     }
 
-    public static <Event> void TriggerEvent(Event e){
-        Class<?> type = e.getClass();
-        System.out.println(e);
-        //System.out.println(listenersList.values());
+    public static <E> void TriggerEvent(E e, Events eName){
 
-        if(!listenersList.contains(e)){
+        if(!listenersList.containsKey(eName)){
             System.out.println("not found");
             return;
         }
 
-        //List<EventListenerBase> eventList = listenersList.get(type);
+        List<EventListenerBase> eventList = listenersList.get(eName);
 
-        for(EventListenerBase event : listenersList){
-            EventListener<Event> eventChild = (EventListener<Event>) event;
+        for(EventListenerBase event : eventList){
+            EventListener<E> eventChild = (EventListener<E>) event;
             eventChild.onEvent(e);
         }
     }
 
-    private static boolean listenersExist(Class<?> type, EventListenerBase receiver) {
-        List<EventListenerBase> receivers;
-
-        /*if(!listenersList.containsKey(type)) {
-            return false;
-        }*/
-
-        boolean found = false;
-
-        /*receivers = listenersList.get(type);
-
-        for(EventListenerBase event : receivers) {
-            if(event == receiver){
-                found = true;
-                break;
-            }
-        }*/
-
-        return found;
-    }
-
-    public static class EventRegister {
-        public static <Event> void EventStartListening(EventListener<Event> caller)
-        {
-            EventManager.<Event>AddListener((EventListener<Event>) EventManager.getInstance());
-        }
-
-        public static <Event> void EventStopListening(EventListener<Event> caller)
-        {
-            EventManager.<Event>RemoveListener(caller);
-        }
-    }
 }
 
 

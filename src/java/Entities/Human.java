@@ -2,9 +2,8 @@ package Entities;
 
 import Events.InputEvent;
 import Listeners.EventListener;
-import Listeners.InputListener;
-import Managers.EventManager;
 import Utils.Colors;
+import Utils.Events;
 
 public class Human extends Character implements EventListener<InputEvent> {
 
@@ -19,7 +18,7 @@ public class Human extends Character implements EventListener<InputEvent> {
                 System.out.println(health + " Human");
             }
         });*/
-        EventManager.EventRegister.EventStartListening();
+        EventListener.EventStartListening(this, Events.InputEvent);
     }
 
     @Override
@@ -29,6 +28,7 @@ public class Human extends Character implements EventListener<InputEvent> {
 
     @Override
     public void onEvent(InputEvent eventType) {
-        System.out.println("x");
+        moveTo(eventType.input);
     }
+
 }

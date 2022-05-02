@@ -41,16 +41,24 @@ public abstract class GameObject {
                 break;
         }
 
-        move(GridManager.getInstance().getMap().getTileAtPosition(new Position(newX, newY)));
+
+        move(GridManager.getInstance().getMap().getTileAtPosition(new Position(posY, posX+1)));
 
     }
 
-    private void move(GridTiles desination) {
-        desination.setGridObject(this);
+    private void move(GridTiles destination) {
+        if(destination == null) {
+            System.out.println("Null tile");
+            return;
+        }
+
+        destination.setGridObject(this);
         currentTile.removeGridObject();
-        currentTile = desination;
-        posX = desination.getPosition().posX();
-        posY = desination.getPosition().posY();
+        currentTile = destination;
+        posX = destination.getPosition().posX();
+        posY = destination.getPosition().posY();
+
+        System.out.println("PosX " + posX + " PosY" + posY);
     }
 
     public String toString() {

@@ -2,6 +2,7 @@ package Events;
 
 import Entities.Character;
 import Managers.EventManager;
+import Utils.Events;
 
 public class DamageEvent {
     public Character target;
@@ -18,9 +19,7 @@ public class DamageEvent {
     static DamageEvent e;
 
     public static <T> void Trigger(Character target, Character instigator, int damage) {
-        e.target = target;
-        e.instigator = instigator;
-        e.damage = damage;
-        EventManager.TriggerEvent(e);
+        e = new DamageEvent(target, instigator, damage);
+        EventManager.TriggerEvent(e, Events.DamageEvent);
     }
 }

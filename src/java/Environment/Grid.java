@@ -26,6 +26,7 @@ public class Grid {
 
     public GridTiles getTileAtPosition(Position pos) {
         try {
+            map[pos.posY()][pos.posX()].setColors(false);
             return map[pos.posY()][pos.posX()];
         }
         catch(IndexOutOfBoundsException e) {
