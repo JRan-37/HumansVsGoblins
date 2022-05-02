@@ -10,10 +10,10 @@ public class EventManager{
 
     private static Map<Events, List<EventListenerBase>> listenersList;
 
-    private static EventManager instance = null;
+    private static EventManager instance = new EventManager();
 
     public static EventManager getInstance() {
-        return instance == null ? new EventManager() : instance;
+        return instance;
     }
 
     private EventManager() {

@@ -8,10 +8,10 @@ import java.util.Scanner;
 
 public class InputManager {
 
-    private static InputManager instance = null;
+    private static InputManager instance = new InputManager();
 
     public static InputManager getInstance() {
-        return instance == null ? new InputManager() : instance;
+        return instance;
     }
 
     private Scanner inputReader;

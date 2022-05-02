@@ -4,10 +4,10 @@ import Environment.Grid;
 
 public class GridManager {
 
-    private static GridManager instance = null;
+    private static GridManager instance = new GridManager();
 
     public static GridManager getInstance() {
-        return instance == null ? new GridManager() : instance;
+        return instance;
     }
 
     private Grid map;
