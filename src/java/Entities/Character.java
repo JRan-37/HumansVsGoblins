@@ -1,7 +1,9 @@
 package Entities;
 
+import Entities.Items.Item;
 import Environment.GridTiles;
 import Events.DamageEvent;
+import Events.ItemPickupEvent;
 import Managers.GridManager;
 import Utils.Inputs;
 import Utils.Position;
@@ -68,6 +70,10 @@ public class Character extends GameObject{
             move(destination); //moves to unoccupied destination
         else if(destination.getGridObject() instanceof Character) //check if another character is occupying destination
             attack((Character)destination.getGridObject(), this); //attack if character is present
+        else if(destination.getGridObject() instanceof Item) { //check if item is occupying destination
+            ItemPickupEvent.Trigger((Item)destination.getGridObject()); //trigger itempickup event
+            move(destination); //move to destination, overwriting item occupation
+        }
 
     }
 
