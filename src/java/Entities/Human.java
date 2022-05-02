@@ -29,18 +29,21 @@ public class Human extends Character implements EventListener<InputEvent> {
     //Automatically equips best equipment and adjusts stats
     public void autoEquip(List<Item> equipment) {
         for(Item item : equipment) {
-            if(item.getType() == ItemTypes.Armor)
+            System.out.println(item.getItemValue());
+            if(item.getType() == ItemTypes.Armor) {
                 if(item.getItemValue() > currentArmor) { //Equip armor if armor is better than current armor
                     defense -= currentArmor;
                     currentArmor = item.getItemValue();
                     defense += currentArmor;
                 }
-            else if(item.getType() == ItemTypes.Weapon)
+            }
+            else if(item.getType() == ItemTypes.Weapon) {
                 if(item.getItemValue() > currentWeapon) { //Equip weapon if weapon is better than current weapon
                     strength -= currentWeapon;
                     currentWeapon = item.getItemValue();
                     strength += currentWeapon;
                 }
+            }
         }
     }
 
