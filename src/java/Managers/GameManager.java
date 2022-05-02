@@ -24,6 +24,9 @@ public class GameManager implements EventListener<GameEvent>{
         return instance;
     }
 
+    //Player object
+    private Human player;
+
     //Gameloop boolean, terminates program when false
     private boolean running;
 
@@ -43,7 +46,7 @@ public class GameManager implements EventListener<GameEvent>{
         System.out.println(Colors.ANSI_CYAN + "Humans vs Goblins" + Colors.ANSI_RESET);
 
         //Spawn Player at top left of the map
-        Human player = new Human(Config.playerHealth, Config.playerStrength, Config.playerDefense, Config.playerAccuracy);
+        player = new Human(Config.playerHealth, Config.playerStrength, Config.playerDefense, Config.playerAccuracy);
         player.spawn(gridManager.getMap().getTileAtPosition(new Position(0, 0)));
 
         //Spawn Goblins
@@ -65,6 +68,11 @@ public class GameManager implements EventListener<GameEvent>{
             System.out.print(Colors.ANSI_CYAN + "Enter command: " + Colors.ANSI_RESET);
             inputManager.getInput(); //wait for user input
         }
+    }
+
+    //Player Getter
+    public Human getPlayer() {
+        return player;
     }
 
     //GameEvent listener terminates the gameloop and exits the program when triggered
