@@ -1,5 +1,6 @@
 package Entities;
 
+import Entities.Items.TreasureChest;
 import Utils.Colors;
 
 public class Goblin extends Character{
@@ -16,5 +17,13 @@ public class Goblin extends Character{
     @Override
     public String toString() {
         return Colors.ANSI_RED + "G " + Colors.ANSI_RESET;
+    }
+
+    @Override
+    protected void kill() {
+        super.kill();
+
+        TreasureChest tc = new TreasureChest();
+        tc.spawn(currentTile);
     }
 }
