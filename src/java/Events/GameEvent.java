@@ -17,7 +17,7 @@ public class GameEvent {
     static GameEvent e;
 
     //called to trigger this event
-    public static <T> void Trigger(String name) {
+    public static void Trigger(String name) {
         e = new GameEvent(name);
         EventManager.TriggerEvent(e, Events.GameEvent);
     }

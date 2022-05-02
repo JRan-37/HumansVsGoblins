@@ -21,7 +21,7 @@ public class DamageEvent {
     static DamageEvent e;
 
     //called to trigger this event
-    public static <T> void Trigger(Character target, Character instigator, int damage) {
+    public static void Trigger(Character target, Character instigator, int damage) {
         e = new DamageEvent(target, instigator, damage);
         EventManager.TriggerEvent(e, Events.DamageEvent);
     }

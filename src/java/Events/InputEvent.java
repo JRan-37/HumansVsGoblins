@@ -17,7 +17,7 @@ public class InputEvent{
     public static InputEvent e;
 
     //called to trigger this event
-    public static <T> void Trigger(Inputs input) {
+    public static void Trigger(Inputs input) {
         e = new InputEvent(input);
         EventManager.TriggerEvent(e, Events.InputEvent);
     }
