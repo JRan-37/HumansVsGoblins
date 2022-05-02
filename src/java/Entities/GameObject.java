@@ -1,8 +1,6 @@
 package Entities;
 
-import Environment.Grid;
 import Environment.GridTiles;
-import Managers.GameManager;
 import Managers.GridManager;
 import Utils.Inputs;
 import Utils.Position;
