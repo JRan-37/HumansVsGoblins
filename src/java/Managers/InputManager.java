@@ -6,52 +6,56 @@ import Utils.Inputs;
 
 import java.util.Scanner;
 
+//Handles user input
 public class InputManager {
 
+    //static singleton instance of InputManager
     private static InputManager instance = new InputManager();
-
+    //returns singleton instance
     public static InputManager getInstance() {
         return instance;
     }
 
-    private Scanner inputReader;
+    private Scanner inputReader; //scanner object for reading user input
 
-    public InputManager() {
+    //Initialize scanner object to read from System.in
+    private InputManager() {
         inputReader = new Scanner(System.in);
     }
 
+    //Retreives and validates user input, triggers events corresponding to valid input
     public void getInput() {
         String input;
-        boolean invalid = false;
+        boolean invalid = false; //input validation bool
         do {
             input = inputReader.nextLine();
-            switch(input.toLowerCase().charAt(0)) {
-                case 'w' :
+            //Triggers events based on user input, loops until input is valid
+            switch (input.toLowerCase().charAt(0)) {
+                case 'w' -> {
                     InputEvent.Trigger(Inputs.MOVE_UP);
                     invalid = false;
-                    break;
-                case 'a' :
+                }
+                case 'a' -> {
                     InputEvent.Trigger(Inputs.MOVE_LEFT);
                     invalid = false;
-                    break;
-                case 's' :
+                }
+                case 's' -> {
                     InputEvent.Trigger(Inputs.MOVE_DOWN);
                     invalid = false;
-                    break;
-                case 'd' :
+                }
+                case 'd' -> {
                     InputEvent.Trigger(Inputs.MOVE_RIGHT);
                     invalid = false;
-                    break;
-                case 'q' :
+                }
+                case 'q' -> {
                     GameEvent.Trigger("End Game");
                     invalid = false;
-                    break;
-                default :
+                }
+                default -> {
                     invalid = true;
                     System.out.println("Invalid entry");
+                }
             }
         }while (invalid);
-
-
     }
 }
