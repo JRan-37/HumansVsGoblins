@@ -2,6 +2,7 @@ package Entities;
 
 import Environment.Grid;
 import Environment.GridTiles;
+import Managers.GameManager;
 import Managers.GridManager;
 import Utils.Inputs;
 import Utils.Position;
@@ -24,7 +25,7 @@ public abstract class GameObject {
         posY = tile.getPosition().posY();
     }
 
-    protected void moveTo(Inputs input) {
+    public void moveTo(Inputs input) {
         int newX = posX, newY = posY;
         switch(input) {
             case MOVE_UP :
@@ -41,12 +42,11 @@ public abstract class GameObject {
                 break;
         }
 
-
-        move(GridManager.getInstance().getMap().getTileAtPosition(new Position(posY, posX+1)));
+        move(GridManager.getInstance().getMap().getTileAtPosition(new Position(newY, newX)));
 
     }
 
-    private void move(GridTiles destination) {
+    public void move(GridTiles destination) {
         if(destination == null) {
             System.out.println("Null tile");
             return;
@@ -58,7 +58,6 @@ public abstract class GameObject {
         posX = destination.getPosition().posX();
         posY = destination.getPosition().posY();
 
-        System.out.println("PosX " + posX + " PosY" + posY);
     }
 
     public String toString() {
